@@ -26,10 +26,16 @@ export default class Point extends Float64Array{
 				({x, y, z = 0} = x);
 			else throw new TypeError("Invalid coordinate source");
 		}
-		this[0] = x = Number(x);
-		this[1] = y = Number(y);
-		this[2] = z = Number(z);
+		this[0] = this.#assertFinite(x = Number(x), "X");
+		this[1] = this.#assertFinite(y = Number(y), "Y");
+		this[2] = this.#assertFinite(z = Number(z), "Z");
 		Object.defineProperty(this, "callbacks", {value: new Set()});
+	}
+	
+	
+	#assertFinite(value, name){
+		if(isFinite(value)) return value;
+		throw new RangeError(`Non-finite ${name} coordinate given`);
 	}
 
 
