@@ -1,0 +1,5 @@
+# Prevent browser tests from skewing language stats on GitHub
+demos/* linguist-documentation
+
+# Exclude irrelevant files from downloaded tarballs
+.editorconfig export-ignore
