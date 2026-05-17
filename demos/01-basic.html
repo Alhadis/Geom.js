@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="viewport" content="initial-scale=1, minimum-scale=1"/>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<title>Demo #1: Basic coordinates testing</title>
+</head>
+
+<body>
+	<div id="grid">
+		<div class="vertex"></div>
+	</div>
+
+	<script type="module">
+		import Angle from "../lib/angle.mjs";
+		import Point from "../lib/point.mjs";
+		
+		const vertex = document.querySelector(".vertex");
+		const angle = new Angle(90 * Math.PI / 180);
+		angle.callbacks.add(({from, to}) => {
+			vertex.style.transform = `rotate(${angle.radians}rad)`;
+		});
+		const pos = new Point();
+		pos.callbacks.add(({from, to}, prop) => {
+			if(~"xyz".indexOf(prop))
+				vertex.style.setProperty(`--${prop}`, to + "px");
+		});
+		pos.set(2, 3);
+		globalThis.angle = angle;
+		globalThis.pos = pos;
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="viewport" content="initial-scale=1, minimum-scale=1"/>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<title>Demo #2: Drawing shapes</title>
+</head>
+
+<body>
+	<canvas id="pad" width="500" height="300"></canvas>
+
+	<script type="module">
+		import Shape from "../lib/shape.mjs";
+		import Rect  from "../lib/rect.mjs";
+		globalThis.Shape = Shape;
+		globalThis.Rect  = Rect;
+		
+		const pad = document.getElementById("pad");
+		const ctx = pad.getContext("2d");
+		const box = new Rect(50, 50, 50, 50);
+		box.render = () => {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.strokeRect(box.x, box.y, box.width, box.height);
+		};
+		box.render();
+		Object.assign(globalThis, {ctx, box});
+	</script>
+</body>
+</html>
