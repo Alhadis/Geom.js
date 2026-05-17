@@ -1,7 +1,7 @@
 /** @typedef {Point|Number[]|{x: number, y: number, z: number}} Pointy */
 
 /**
- * Cartesian coordinates representing a location in 2D space.
+ * Cartesian coordinates representing a location in 3D space.
  * @class
  */
 export default class Point extends Float64Array{
@@ -129,7 +129,7 @@ export default class Point extends Float64Array{
 
 
 	/**
-	 * Offset both coordinates simultaneously.
+	 * Offset every coordinate simultaneously.
 	 * @param {Number} [x=0]
 	 * @param {Number} [y=x]
 	 * @param {Number} [z=0]
